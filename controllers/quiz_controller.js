@@ -18,7 +18,7 @@ exports.load = function(req, res, next, quizId) {
 exports.index = function(req, res, next) {
 	models.Quiz.findAll()
 		.then(function(quizzes) {
-			res.render('quizzes/index.ejs', { quizzes: quizzes});
+			res.render('/quizzes/index.ejs', { quizzes: quizzes});
 		})
 		.catch(function(error) { next(error); });
 };
@@ -27,7 +27,7 @@ exports.index = function(req, res, next) {
 exports.show = function(req, res, next) {
 
 				var answer = req.query.answer || '';
-				res.render('quizzes/show', {quiz: req.quiz,
+				res.render('/quizzes/show', {quiz: req.quiz,
                                             answer: answer});
 };
 
@@ -36,7 +36,7 @@ exports.check = function(req, res, next) {
 
 			var answer = req.query.answer || "";
 			var result = answer === req.quiz.answer ? 'Correcta' : 'Incorrecta';
-			res.render('quizzes/result', { quiz: req.quiz, 
+			res.render('/quizzes/result', { quiz: req.quiz, 
 			                               result: result, 
 			                               answer: answer });
 };
@@ -44,7 +44,7 @@ exports.check = function(req, res, next) {
 // GET /quizzes/new
 exports.new = function(req, res, next) {
 	var quiz = models.Quiz.build({question: "", answer: ""});
-	res.render('quizzes/new', {quiz: quiz});
+	res.render('/quizzes/new', {quiz: quiz});
 };
 
 
@@ -66,7 +66,7 @@ exports.create = function(req, res, next) {
 				req.flash('error', error.errors[i].value);
 			};
 
-			res.render('quizzes/new', {quiz: quiz});
+			res.render('/quizzes/new', {quiz: quiz});
 		})
 
 		.catch(function(error) {
@@ -79,7 +79,7 @@ exports.create = function(req, res, next) {
 exports.edit = function(req, res, next) {
 	var quiz = req.quiz;  // req.quiz: autoload
 	                      // de instancia de quiz
-    res.render('quizzes/edit', {quiz: quiz});
+    res.render('/quizzes/edit', {quiz: quiz});
 };
 
 //PUT /quizzes/:id
@@ -100,7 +100,7 @@ exports.update = function(req, res, next) {
         		req.flash('error', error.errors[i].value);
         	};
 
-        	res.render('quizzes/edit', {quiz:req.quiz});
+        	res.render('/quizzes/edit', {quiz:req.quiz});
         })
         .catch(function(error) {
         req.flash('error', 'Error al editar el Quiz: '+error.message);
