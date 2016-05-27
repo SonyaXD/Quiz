@@ -44,7 +44,7 @@ exports.check = function(req, res, next) {
 // GET /quizzes/new
 exports.new = function(req, res, next) {
 	var quiz = models.Quiz.build({question: "", answer: ""});
-	res.render('quizzes/new', {quiz: quiz});
+	res.render('quizzes/new.ejs', {quiz: quiz});
 };
 
 
@@ -66,7 +66,7 @@ exports.create = function(req, res, next) {
 				req.flash('error', error.errors[i].value);
 			};
 
-			res.render('quizzes/new', {quiz: quiz});
+			res.render('quizzes/new.ejs', {quiz: quiz});
 		})
 
 		.catch(function(error) {
@@ -79,7 +79,7 @@ exports.create = function(req, res, next) {
 exports.edit = function(req, res, next) {
 	var quiz = req.quiz;  // req.quiz: autoload
 	                      // de instancia de quiz
-    res.render('quizzes/edit', {quiz: quiz});
+    res.render('quizzes/edit.ejs', {quiz: quiz});
 };
 
 //PUT /quizzes/:id
@@ -100,7 +100,7 @@ exports.update = function(req, res, next) {
         		req.flash('error', error.errors[i].value);
         	};
 
-        	res.render('quizzes/edit', {quiz:req.quiz});
+        	res.render('quizzes/edit.ejs', {quiz:req.quiz});
         })
         .catch(function(error) {
         req.flash('error', 'Error al editar el Quiz: '+error.message);
