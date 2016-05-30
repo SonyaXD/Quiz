@@ -28,7 +28,7 @@ router.get('/users/new',                        userController.new); //Formulari
 router.post('/users',                           userController.create); //Registrar usuario
 router.get('/users/:userId(\\d+)/edit',         userController.edit); //Editar cuenta
 router.put('/users/:userId(\\d+)',              userController.update); //Actualizar cuenta
-router.delete('/users/:userId(\\d+)',          userController.destroy); //Borrar cuenta
+router.delete('/users/:userId(\\d+)',           userController.destroy); //Borrar cuenta
 
 
 // Definición de rutas de /quizzes
