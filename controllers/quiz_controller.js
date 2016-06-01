@@ -85,8 +85,8 @@ exports.edit = function(req, res, next) {
 //PUT /quizzes/:id
 exports.update = function(req, res, next) {
 
-	req.quiz.question = req.body.quiz.question;
-	req.quiz.answer = req.body.quiz.answer;
+	req.quiz.question = req.body.quiz.question;  // req.body.question
+	req.quiz.answer = req.body.quiz.answer;      // req.body.answer
 
 	req.quiz.save({fields: ["question", "answer"]})
 		.then(function(quiz) {
@@ -122,6 +122,7 @@ exports.destroy = function(req, res, next) {
 		});
 };
 
+// No está en el GitHub
 exports.ownershipRequired = function(req, res, next) {
 
 	var isAdmin = req.session.user.isAdmin;
